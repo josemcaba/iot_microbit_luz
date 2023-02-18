@@ -19,3 +19,15 @@ basic.forever(function () {
     OLED.writeNumNewLine(Environment.ReadLightIntensity(AnalogPin.P2))
     basic.pause(120000)
 })
+control.inBackground(function () {
+    while (true) {
+        basic.showIcon(IconNames.Heart)
+        if (ESP8266_IoT.kidsiotState(false)) {
+            basic.showIcon(IconNames.Diamond)
+            ESP8266_IoT.connectKidsiot("3a98OSfKko3Xge0G", "1")
+            basic.showIcon(IconNames.Target)
+        }
+        basic.showIcon(IconNames.SmallHeart)
+        basic.pause(2000)
+    }
+})
