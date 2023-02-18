@@ -17,17 +17,24 @@ basic.forever(function () {
     ESP8266_IoT.connectKidsiot("3a98OSfKko3Xge0G", "1")
     ESP8266_IoT.uploadKidsiot(Environment.ReadLightIntensity(AnalogPin.P2))
     OLED.writeNumNewLine(Environment.ReadLightIntensity(AnalogPin.P2))
-    basic.pause(120000)
+    basic.pause(60000)
 })
 control.inBackground(function () {
     while (true) {
-        basic.showIcon(IconNames.Heart)
+        basic.showLeds(`
+            . # . # .
+            # . # . #
+            # . . . #
+            . # . # .
+            . . # . .
+            `)
+        basic.pause(5000)
         if (ESP8266_IoT.kidsiotState(false)) {
             basic.showIcon(IconNames.Diamond)
             ESP8266_IoT.connectKidsiot("3a98OSfKko3Xge0G", "1")
             basic.showIcon(IconNames.Target)
         }
         basic.showIcon(IconNames.SmallHeart)
-        basic.pause(2000)
+        basic.pause(5000)
     }
 })
