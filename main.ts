@@ -17,6 +17,10 @@ basic.forever(function () {
     ESP8266_IoT.connectKidsiot("3a98OSfKko3Xge0G", "1")
     ESP8266_IoT.uploadKidsiot(Environment.ReadLightIntensity(AnalogPin.P2))
     OLED.writeNumNewLine(Environment.ReadLightIntensity(AnalogPin.P2))
+    OLED.writeString("Temperatura: ")
+    ESP8266_IoT.connectKidsiot("3a98OSfKko3Xge0G", "2")
+    ESP8266_IoT.uploadKidsiot(Environment.octopus_BME280(Environment.BME280_state.BME280_temperature_C))
+    OLED.writeNumNewLine(Environment.octopus_BME280(Environment.BME280_state.BME280_temperature_C))
     basic.pause(60000)
 })
 control.inBackground(function () {
